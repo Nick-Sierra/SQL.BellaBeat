@@ -1,2 +1,2 @@
 # SQL.BellaBeat
-Case Study on Fitness Data Analysis 
+Case Study on Fitness Data  
