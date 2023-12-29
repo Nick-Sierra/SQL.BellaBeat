@@ -28,12 +28,6 @@ You work on the marketing analyst team at Bellabeat, a high-tech firm specializi
 - In what ways might these identified patterns be relevant to Bellabeat's clientele?
 - How can these trends be leveraged to refine and enhance Bellabeat's marketing approaches?
 
-## Limitations 
-
-- Sample size: The data contains only 30 participants, which may result in sampling bias.
-- Outdated: The dataset contains data from a two month period in 2016, April and May. A larger timeframe may be more representative of actual trends. 
-- Limited: No demographic information provided, including age, or location. This information could be beneficial for marketing purposes to target specific customers.
-
 ## Tools used in Analysis
 - Data Cleaning: Microsoft Excel 
 - Data Analysis: Microsft SQL Server 
@@ -52,24 +46,35 @@ To address the business task of analyzing how users utilize the time smart devic
 - Correlation of Steps with Active Minutes
 - Correlation of Sleep with Active Minutes by Day
 
-### Prepare Phase:
+## Step 2: Prepare
 
-The data for this analysis is sourced from a public dataset available on [Kaggle](https://www.kaggle.com/datasets/arashnic/fitbit). It comprises of 18 files containing detailed information about daily activity, sleep, weight, calories, and intensities. The dataset is structured in a combination of long and wide format, with each file containing specific information related to different aspects of smart device usage. It is important to note that the data is not from Bellabeat itself, there may be potential issues with bias or credibility.  Furthermore, it is worth mentioning that the dataset is not up to date, encompassing data only for the months of April and May in 2016. Therefore, the analysis may not fully reflect the most current trends in smart device usage. Additionally, it's important to acknowledge that the dataset lacks information about the Spring product and the Bellabeat app, thereby limiting the scope of the analysis to the Time smart device.
+The data for this analysis is sourced from a public dataset available on [Kaggle](https://www.kaggle.com/datasets/arashnic/fitbit). The dataset includes 18 files containing detailed information about daily activity, sleep, weight, calories, and intensities. The dataset is structured in a combination of long and wide format, with each file containing specific information related to different aspects of smart device usage. It is important to note that the data is not from Bellabeat itself, there may be potential issues with bias or credibility. Our analysis will focus on the following datasets: 
 
+- Daily_Activity
+- Hourly_Steps
+- Daily_Steps
+- Daily_Sleep
+- Weight
 
+## Limitations 
 
-### Prepare Phase: 
+- Sample size: The data contains only 33 participants, which may result in sampling bias. The Weight Dataset only has 8 participants. 
+- Outdated: The dataset contains data from a two month period in 2016, April and May. A larger timeframe may be more representative of actual trends. 
+- Limited: No demographic information provided, including age, or location. This information could be beneficial for marketing purposes to target specific customers.
+
+![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/7a555b70-86dc-47b1-8fca-310acbd56bc4)
 
 #### Cleaning in Excel:
 
 The following considerations were observations and updated to clean data effectively:
-- **Removal of Unwanted Tables:** As 'daily_steps', 'daily_calories' and 'daily_intensities' table were part of daily_activity file, also it was validated using MATCH function. Therefore, unwanted files that will not be part of anlysis were removed.
-- **Rename File:** Proper naming conventions were applied to maintain data integrity.
-
-
-
-- **Check Data Type:** Data type of relevant columns, such as, TotalSteps, TotalDistance, VeryActiveMinutes, LittleActiveMinutes, FairlyActiveMinutes and SedentaryMinutes were converted to numeric value.
+- **Removed Unused Datasets:**  Daily_activity already included 'daily_steps', 'daily_calories' and 'daily_intensities', so they were removed. All minutes files were also removed as they were not needed for this analysis.
+- **Removed Unused Columns:** SedentaryActiveDistance was removed.
+- **Removed Unused Columns Weight Dataset:** Only 2 entries for the column labeled Fat, removed column. Column labeled isManualReport, removed.  
+- **Seperate Activity Hour Column in Hourly_Steps:** Used Text to columns with a fixed to seperate time from date. Changed Activity Hour column to Activity_Date, changed format to short date.  
+- **File Renaming:** Changed file names to uniform naming conventions to ensure consistency.
+- **Check Data Type:** All columns with the exception of ActivityDate were converted to numeric value.
 - **Check duplicates:** Duplicate values were identified from two files and removed using 'Remove Duplicates'.
+- **Check for Missing Values:** 77 rows were removed with 0 entries for Total Daily Steps. 
 - **Check for Blanks:** The data set was checked for incomplete or blank values in all columns.
 - **Validate Column Values:** All column values in the respective files were valited using filter.
 - **Sorting the Table:** The table was sorted in ascending order based on the 'Date' column.
@@ -77,53 +82,94 @@ The following considerations were observations and updated to clean data effecti
 ### Process Phase:
 During this phase, a thorough examination of the key findings related to how users utilize Bellabeat smart devices was conducted using Microsoft SQL Server.
 
-#### 1. Proportion of Calories per Distance by Day:
+#### 1. Catagorizing users by activity level
+- Sedentary - Less than 5000 steps a day
+- Lightly active - Between 5000 and 7499 steps a day
+- Fairly active - Between 7500 and 9999 steps a day
+- Very active - More than 10000 steps a day
+
+SQL Query: 
+
+SQL Query:
+
+Result:
+
+![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/a4be5964-8e23-4f9c-9992-3cf3c8a37855)
+
+Result: 
+
+![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/dc1396b6-932e-406c-83fc-70d067d63130)
+
+
+#### 2. Amount of Calories and Distance per day 
 
 SQL Query: 
 
 Result:
 
+![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/57da74e7-26c3-4dee-a337-307d3cd83961)
 
 
-#### 2. Average Steps per Hour 
-
-SQL Query: 
-
-Result: 
-
-
-
-#### 3. Total Steps & Total Distance by ID
+#### 3. Average Steps per Hour 
 
 SQL Query: 
 
-Result:
+Result: 0 for the hour of the day represents 12:00 AM
+
+![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/a782906a-f340-45df-9ca0-0871262e22c9)
 
 
-
-#### 4. Maximum Sleep Duration (in hours) by Day
-
-SQL Query: 
-
-Result: 
-
-
-
-#### 5. Correlation of Steps with Active Minutes
-
-SQL Query: 
-
-Result: 
-
-
-
-
-#### 6. Correlation of Sleep with Active Minutes by Day
+#### 4. Total Steps & Total Distance by ID
 
 SQL Query: 
 
 Result:
 
+![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/86a12c47-3d4a-4628-899c-0f79fd417100)
+
+
+#### 5 Average steps per ID and Average Hours of Sleep 
+SQL Query: 
+Result:
+
+![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/2be6b562-76e7-4039-809e-48695805ec4d)
+
+
+
+#### 5. Do the average steps per day meet the recommended 10,000 step reccomendation   
+
+SQL Query: 
+
+Result: Total steps > 0 was added to exclude entries with 0 steps per day 
+
+![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/d462e72c-938e-4afa-b6c6-30c5d549957b)
+
+
+#### 6. Does the average sleep per day meet the recommended 8 hours 
+
+SQL Query: 
+
+Result:
+
+![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/af84da4c-d6d3-4eb5-b991-b1880777573d)
+
+
+#### 7. Is there a Correlation between number of steps taken and hours of sleep?
+
+SQL Query: 
+
+Result: 
+
+![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/c7868422-d592-42bd-ba7d-126f69f7c165)
+
+
+#### 7. Average hours of sleep by active category 
+
+SQL Query: 
+
+Result:
+
+![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/9f654716-a960-4064-90b8-e957cecee19d)
 
 
 ### Analyze Phase: 
