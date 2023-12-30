@@ -1,11 +1,10 @@
 # SQL.BellaBeat
-Google Case Study: BellaBeat Smart Device Usage 
+Google Case Study: Bellabeat Smart Device Usage 
 #
-_The case study follows the six step data analysis process:_
 
 ## Quick Links:
 
-### Data Source: 
+### Data Source: https://www.kaggle.com/datasets/arashnic/fitbit/data
 ### SQL Code: 
 ### Tableau Public:
 
@@ -14,7 +13,7 @@ _The case study follows the six step data analysis process:_
 This case study is part of the Google Data Analytics Professional Certificate program. As part of the Capstone Project, the following objective is to be completed.
 
 ## Objective 
-You work on the marketing analyst team at Bellabeat, a high-tech firm specializing in health-centric products for women. The team's primary objective is to delve into consumer usage patterns of smart devices, extracting valuable insights that will shape Bellabeat's marketing approaches. You have been tasked to focus on one of Bellabeat's products and analyze smart device data to gain insight into how consumers are using the devices. The findings and strategic recommendations derived from this analysis are slated for presentation to Bellabeat's executive team, with the aim of informing and enhancing the company's market positioning strategies. This project explores the company's opportunities for growth in the expansive global smart device market.
+You work on the marketing analyst team at Bellabeat, a high-tech firm specializing in health-centric products for women. The team's primary objective is to look into consumer usage patterns of smart devices, extracting valuable insights that will shape Bellabeat's marketing approaches. You have been tasked to focus on one of Bellabeat's products and analyze smart device data to gain insight into how consumers are using the devices. The findings and strategic recommendations derived from this analysis are slated for presentation to Bellabeat's executive team, with the aim of informing and enhancing the company's market positioning strategies. This project explores the company's opportunities for growth in the expansive global smart device market.
 
 **Key Stakeholders:** 
 
@@ -34,21 +33,22 @@ You work on the marketing analyst team at Bellabeat, a high-tech firm specializi
 - Visualization: Tableau Public
 
 ## Data Analysis Process
-In order to adequately analyze bellabeat data and to answer the key business questions and make recommendations, we will use the following 6 data analysis phases: Ask, Prepare, Process, Analyze, Share and Act.
+We will be using the 6 phases of the data analysis process: Ask, Prepare, Process, Analyze, Share and Act.
 
 ## Step 1: Ask 
-To address the business task of analyzing how users utilize the time smart device, the following key findings will guide the analysis:
+Bellabeat's Time product tracks the users activity, sleep, and stress. To address the business task of analyzing how users utilize the Time smart device, the following key findings will help guide the analysis:
 
-- Proportion of Calories per Distance by Day
+- Acitivity Level by Users 
+- Amount of Calories and Distance per Day
 - Average Steps per Hour
-- Total Steps & Total Distance by ID
-- Maximum Sleep Duration (in hours) by Day
-- Correlation of Steps with Active Minutes
-- Correlation of Sleep with Active Minutes by Day
+- Total Steps and Total Distance by ID 
+- Average Steps per ID and Average Hours of Sleep 
+- Average steps per day of the week in relation to 10,000 step recommendation
+- Average sleep per day in relation to recommended amount of 8 hours 
 
 ## Step 2: Prepare
 
-The data for this analysis is sourced from a public dataset available on [Kaggle](https://www.kaggle.com/datasets/arashnic/fitbit). The dataset includes 18 files containing detailed information about daily activity, sleep, weight, calories, and intensities. The dataset is structured in a combination of long and wide format, with each file containing specific information related to different aspects of smart device usage. It is important to note that the data is not from Bellabeat itself, there may be potential issues with bias or credibility. Our analysis will focus on the following datasets: 
+The data for this analysis is sourced from a public dataset available on [Kaggle](https://www.kaggle.com/datasets/arashnic/fitbit). The original dataset includes 18 files containing detailed information about daily activity, sleep, weight, calories, and intensities. The dataset is structured in a combination of long and wide format, with each file containing specific information related to different aspects of smart device usage. It is important to note that the data is not from Bellabeat itself, therefore bias or data credibility may be an issue (but since this is a case study, I think we'll be ok). Our analysis will focus on the following datasets: 
 
 - Daily_Activity
 - Hourly_Steps
@@ -62,25 +62,23 @@ The data for this analysis is sourced from a public dataset available on [Kaggle
 - Outdated: The dataset contains data from a two month period in 2016, April and May. A larger timeframe may be more representative of actual trends. 
 - Limited: No demographic information provided, including age, or location. This information could be beneficial for marketing purposes to target specific customers.
 
-![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/7a555b70-86dc-47b1-8fca-310acbd56bc4)
+### Process:
 
-#### Cleaning in Excel:
-
-The following considerations were observations and updated to clean data effectively:
+During the process phase, the data cleaning steps were carried out in Microsoft Excel. The following actions were performed:
 - **Removed Unused Datasets:**  Daily_activity already included 'daily_steps', 'daily_calories' and 'daily_intensities', so they were removed. All minutes files were also removed as they were not needed for this analysis.
-- **Removed Unused Columns:** SedentaryActiveDistance was removed.
-- **Removed Unused Columns Weight Dataset:** Only 2 entries for the column labeled Fat, removed column. Column labeled isManualReport, removed.  
-- **Seperate Activity Hour Column in Hourly_Steps:** Used Text to columns with a fixed to seperate time from date. Changed Activity Hour column to Activity_Date, changed format to short date.  
+- **Removed Unused Columns in 'Daily Activity':** 'SedentaryActiveDistance' was removed.
+- **Removed Unused Columns in 'Weight Dataset':** Only 2 entries for the column labeled 'Fat', column removed. Column labeled 'isManualReport', removed.  
+- **Seperate 'Activity_Hour' Column in 'Hourly_Steps':** Used Text-to-columns with a fixed width to seperate time from date. Changed Activity Hour column to Activity_Date, changed format to short date.  
 - **File Renaming:** Changed file names to uniform naming conventions to ensure consistency.
-- **Check Data Type:** All columns with the exception of ActivityDate were converted to numeric value.
-- **Check duplicates:** Duplicate values were identified from two files and removed using 'Remove Duplicates'.
+- **Check Data Type:** All columns with the exception of 'ActivityDate' were converted to numeric values.
 - **Check for Missing Values:** 77 rows were removed with 0 entries for Total Daily Steps. 
-- **Check for Blanks:** The data set was checked for incomplete or blank values in all columns.
-- **Validate Column Values:** All column values in the respective files were valited using filter.
-- **Sorting the Table:** The table was sorted in ascending order based on the 'Date' column.
+- **Check for Blanks:** The data set was checked for incomplete or blank values in all columns. Some data, particularly 'steps_per_day', have 0 value entries, these rows were kept and removed from analysis with a > 0 formula in SQL.
+- **Validated Column Values:** All column values in the respective datsets were valited using filter.
 
-### Process Phase:
-During this phase, a thorough examination of the key findings related to how users utilize Bellabeat smart devices was conducted using Microsoft SQL Server.
+
+### Analyze:
+
+During the Analyze phase, our objective is to explore the dataset thoroughly, revealing valuable insights and addressing significant discoveries pertaining to the usage of the Time product. Our primary emphasis lies in the data received from the product, focusing on the users daily activity, sleep, steps, and weight. This analysis should discover preferences and trends, with the ultimate goal of informing marketing strategies. Thorough examination of key findings were analyzed using Microsoft SQL Server.
 
 #### 1. Catagorizing users by activity level
 - Sedentary - Less than 5000 steps a day
@@ -119,13 +117,14 @@ Result: 0 for the hour of the day represents 12:00 AM
 ![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/a782906a-f340-45df-9ca0-0871262e22c9)
 
 
-#### 4. Total Steps & Total Distance by ID
+#### 4. Percent of time spent sleeping vs lying in bed 
 
 SQL Query: 
 
 Result:
 
-![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/86a12c47-3d4a-4628-899c-0f79fd417100)
+![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/ef944757-2890-4bce-ac8a-32c115d91eab)
+
 
 
 #### 5 Average steps per ID and Average Hours of Sleep 
@@ -154,7 +153,7 @@ Result:
 ![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/af84da4c-d6d3-4eb5-b991-b1880777573d)
 
 
-#### 7. Is there a Correlation between number of steps taken and hours of sleep?
+#### 7. Is there a relation between number of steps taken and hours of sleep?
 
 SQL Query: 
 
