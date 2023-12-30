@@ -1,0 +1,253 @@
+-- 1. Catagorizing users by activity level
+SELECT 
+    Id,
+    CEILING(AVG(CAST(TotalSteps AS FLOAT))) AS AvgDailyStepsRoundedUp,
+    CASE
+        WHEN CEILING(AVG(CAST(TotalSteps AS FLOAT))) < 5000 THEN 'Sedentary'
+        WHEN CEILING(AVG(CAST(TotalSteps AS FLOAT))) BETWEEN 5000 AND 7499 THEN 'Lightly active'
+        WHEN CEILING(AVG(CAST(TotalSteps AS FLOAT))) BETWEEN 7500 AND 9999 THEN 'Fairly active'
+        WHEN CEILING(AVG(CAST(TotalSteps AS FLOAT))) >= 10000 THEN 'Very active'
+        ELSE 'Undefined'
+    END AS ActivityCategory
+FROM 
+    dbo.Daily_Activity
+GROUP BY 
+    Id
+ORDER BY 
+    Id;
+
+
+-- 1.1. A view of the Activity Category 
+WITH CategorizedUsers AS (
+    SELECT 
+        Id,
+        CASE
+            WHEN CEILING(AVG(CAST(TotalSteps AS FLOAT))) < 5000 THEN 'Sedentary'
+            WHEN CEILING(AVG(CAST(TotalSteps AS FLOAT))) BETWEEN 5000 AND 7499 THEN 'Lightly active'
+            WHEN CEILING(AVG(CAST(TotalSteps AS FLOAT))) BETWEEN 7500 AND 9999 THEN 'Fairly active'
+            WHEN CEILING(AVG(CAST(TotalSteps AS FLOAT))) >= 10000 THEN 'Very active'
+            ELSE 'Undefined'
+        END AS ActivityCategory
+    FROM 
+        dbo.Daily_Activity
+    GROUP BY 
+        Id
+),
+CategoryCounts AS (
+    SELECT 
+        ActivityCategory,
+        COUNT(*) AS NumberOfParticipants
+    FROM CategorizedUsers
+    GROUP BY ActivityCategory
+),
+TotalParticipants AS (
+    SELECT 
+        SUM(NumberOfParticipants) AS Total
+    FROM CategoryCounts
+)
+SELECT 
+    CC.ActivityCategory,
+    CC.NumberOfParticipants,
+    CAST(CC.NumberOfParticipants AS FLOAT) / TP.Total * 100.0 AS PercentageOfTotal
+FROM 
+    CategoryCounts CC,
+    TotalParticipants TP
+ORDER BY 
+    CASE CC.ActivityCategory
+        WHEN 'Sedentary' THEN 1
+        WHEN 'Lightly active' THEN 2
+        WHEN 'Fairly active' THEN 3
+        WHEN 'Very active' THEN 4
+        ELSE 5
+  END;
+
+
+--2. Amount of calories and distance per day  
+	SELECT 
+    DATENAME(weekday, ActivityDate) AS DayOfWeek,
+    SUM(Calories) AS TotalCalories,
+    SUM(TotalDistance) AS TotalDistance
+FROM 
+    dbo.Daily_Activity
+GROUP BY 
+    DATENAME(weekday, ActivityDate)
+ORDER BY 
+    CASE 
+        WHEN DATENAME(weekday, ActivityDate) = 'Sunday' THEN 1
+        WHEN DATENAME(weekday, ActivityDate) = 'Monday' THEN 2
+        WHEN DATENAME(weekday, ActivityDate) = 'Tuesday' THEN 3
+        WHEN DATENAME(weekday, ActivityDate) = 'Wednesday' THEN 4
+        WHEN DATENAME(weekday, ActivityDate) = 'Thursday' THEN 5
+        WHEN DATENAME(weekday, ActivityDate) = 'Friday' THEN 6
+        WHEN DATENAME(weekday, ActivityDate) = 'Saturday' THEN 7
+    END;
+
+
+--3. Average steps per hour 
+	SELECT 
+    DATEPART(HOUR, Activity_Time) AS HourOfDay,
+    ROUND(AVG(CAST(Step_Total AS FLOAT)), 1) AS AvgStepsPerHour
+FROM 
+    dbo.Hourly_Steps
+GROUP BY 
+    DATEPART(HOUR, Activity_Time)
+ORDER BY 
+    HourOfDay;
+
+
+--4. 	Percent of time spent sleeping vs lying in bed
+SELECT 
+    Id,
+    ROUND(AVG(CAST(TotalMinutesAsleep AS FLOAT) / CAST(TotalTimeInBed AS FLOAT) * 100), AS SleepEfficiencyPercentage
+FROM 
+    dbo.Daily_Sleep
+WHERE 
+    TotalTimeInBed > 0  -- Ensuring we don't divide by zero
+GROUP BY 
+    Id
+ORDER BY 
+    Id;
+
+
+--5. 	Average steps per ID and Average Hours of Sleep
+SELECT 
+    DA.Id,
+    ROUND(AVG(CAST(DA.TotalSteps AS FLOAT)), 1) AS AvgSteps,
+    ROUND(AVG(CAST(DS.TotalMinutesAsleep AS FLOAT) / 60), 1) AS AvgHoursAsleep
+FROM 
+    dbo.Daily_Activity DA
+JOIN 
+    dbo.Daily_Sleep DS ON DA.Id = DS.Id AND CAST(DA.ActivityDate AS DATE) = CAST(DS.SleepDay AS DATE)
+GROUP BY 
+    DA.Id
+ORDER BY 
+DA.Id;
+
+
+--6. Do the average steps per day meet the recommended 10,000 steps per day 
+SELECT 
+    DATENAME(weekday, ActivityDate) AS DayOfWeek,
+    ROUND(AVG(CAST(TotalSteps AS FLOAT)), 1) AS AvgSteps,
+    CASE 
+        WHEN ROUND(AVG(CAST(TotalSteps AS FLOAT)), 1) >= 10000 THEN 'Meets Recommendation'
+        ELSE 'Below Recommendation'
+    END AS StepsRecommendation
+FROM 
+    dbo.Daily_Activity
+WHERE 
+    TotalSteps > 0
+GROUP BY 
+    DATENAME(weekday, ActivityDate)
+ORDER BY 
+    CASE DATENAME(weekday, ActivityDate)
+        WHEN 'Sunday' THEN 1
+        WHEN 'Monday' THEN 2
+        WHEN 'Tuesday' THEN 3
+        WHEN 'Wednesday' THEN 4
+        WHEN 'Thursday' THEN 5
+        WHEN 'Friday' THEN 6
+        WHEN 'Saturday' THEN 7
+  END;
+
+
+--7. Does the average sleep per day meet the recommended 8 hours  
+	SELECT 
+    DATENAME(weekday, CAST(SleepDay AS DATE)) AS DayOfWeek,
+    ROUND(AVG(CAST(TotalMinutesAsleep AS FLOAT) / 60), 1) AS AvgHoursAsleep,
+    CASE 
+        WHEN ROUND(AVG(CAST(TotalMinutesAsleep AS FLOAT) / 60), 1) >= 8 THEN 'Meets Recommendation'
+        ELSE 'Below Recommendation'
+    END AS SleepRecommendation
+FROM 
+    dbo.Daily_Sleep
+WHERE 
+    TotalMinutesAsleep > 0
+GROUP BY 
+    DATENAME(weekday, CAST(SleepDay AS DATE))
+ORDER BY 
+    CASE DATENAME(weekday, CAST(SleepDay AS DATE))
+        WHEN 'Sunday' THEN 1
+        WHEN 'Monday' THEN 2
+        WHEN 'Tuesday' THEN 3
+        WHEN 'Wednesday' THEN 4
+        WHEN 'Thursday' THEN 5
+        WHEN 'Friday' THEN 6
+        WHEN 'Saturday' THEN 7
+    END;
+
+
+--8. 	Is there a relation between number of steps taken and hours of sleep?
+WITH CombinedData AS (
+    SELECT 
+        DA.Id,
+        DATENAME(weekday, DA.ActivityDate) AS DayOfWeek,
+        DA.TotalSteps,
+        DS.TotalMinutesAsleep / 60.0 AS HoursAsleep
+    FROM 
+        dbo.Daily_Activity DA
+    INNER JOIN 
+        dbo.Daily_Sleep DS ON DA.Id = DS.Id AND CAST(DA.ActivityDate AS DATE) = CAST(DS.SleepDay AS DATE)
+)
+SELECT 
+    DayOfWeek,
+    ROUND(AVG(CAST(TotalSteps AS FLOAT)), 1) AS AvgSteps,
+    ROUND(AVG(HoursAsleep), 1) AS AvgHoursAsleep,
+    ROUND(AVG(CASE 
+                WHEN HoursAsleep > 0 THEN TotalSteps / HoursAsleep
+                ELSE NULL
+             END), 1) AS AvgStepsPerHourOfSleep
+FROM 
+    CombinedData
+GROUP BY 
+    DayOfWeek
+ORDER BY 
+    CASE DayOfWeek
+        WHEN 'Sunday' THEN 1
+        WHEN 'Monday' THEN 2
+        WHEN 'Tuesday' THEN 3
+        WHEN 'Wednesday' THEN 4
+        WHEN 'Thursday' THEN 5
+        WHEN 'Friday' THEN 6
+        WHEN 'Saturday' THEN 7
+    END;
+
+
+--9. Average amount of sleep by activity category 
+WITH ActivityData AS (
+    SELECT 
+        DA.Id,
+        CASE 
+            WHEN AVG(CAST(DA.TotalSteps AS FLOAT)) < 5000 THEN 'Sedentary'
+            WHEN AVG(CAST(DA.TotalSteps AS FLOAT)) BETWEEN 5000 AND 7499 THEN 'Lightly active'
+            WHEN AVG(CAST(DA.TotalSteps AS FLOAT)) BETWEEN 7500 AND 9999 THEN 'Fairly active'
+            WHEN AVG(CAST(DA.TotalSteps AS FLOAT)) >= 10000 THEN 'Very active'
+        END AS ActivityCategory
+    FROM 
+        dbo.Daily_Activity DA
+    GROUP BY 
+        DA.Id
+), SleepData AS (
+    SELECT 
+        DS.Id,
+        AVG(CAST(DS.TotalMinutesAsleep AS FLOAT) / 60) AS AvgHoursAsleep
+    FROM 
+        dbo.Daily_Sleep DS
+    GROUP BY 
+        DS.Id
+)
+SELECT 
+    AD.ActivityCategory,
+    ROUND(AVG(SD.AvgHoursAsleep), 1) AS AvgHoursAsleep
+FROM 
+    ActivityData AD
+JOIN 
+    SleepData SD ON AD.Id = SD.Id
+GROUP BY 
+    AD.ActivityCategory
+ORDER BY 
+    CASE AD.ActivityCategory
+        WHEN 'Sedentary' THEN 1
+        WHEN 'Lightly active' THEN 2
+        WHEN 'Fairly active' THEN 3
+        WHEN 'Very active' THEN 4
+    END;
