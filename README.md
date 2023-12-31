@@ -80,7 +80,7 @@ During the process phase, the data cleaning steps were carried out in Microsoft 
 
 During the Analyze phase, our objective is to explore the dataset thoroughly, revealing valuable insights and addressing significant discoveries pertaining to the usage of the Time product. Our primary emphasis lies in the data received from the product, focusing on the users daily activity, sleep, steps, and weight. This analysis should discover preferences and trends, with the ultimate goal of informing marketing strategies. Thorough examination of key findings were analyzed using Microsoft SQL Server.
 
-#### 1. Catagorizing users by activity level
+#### 1. Categorizing users by activity level
 - Sedentary - Less than 5000 steps a day
 - Lightly active - Between 5000 and 7499 steps a day
 - Fairly active - Between 7500 and 9999 steps a day
@@ -127,7 +127,7 @@ Result:
 
 
 
-#### 5 Average steps per ID and Average Hours of Sleep 
+#### 5. Average steps per ID and Average Hours of Sleep 
 SQL Query: 
 Result:
 
@@ -135,7 +135,7 @@ Result:
 
 
 
-#### 5. Do the average steps per day meet the recommended 10,000 step reccomendation   
+#### 6. Do the average steps per day meet the 10,000 step recomendation   
 
 SQL Query: 
 
@@ -144,7 +144,7 @@ Result: Total steps > 0 was added to exclude entries with 0 steps per day
 ![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/d462e72c-938e-4afa-b6c6-30c5d549957b)
 
 
-#### 6. Does the average sleep per day meet the recommended 8 hours 
+#### 7. Does the average sleep per day meet the recommended 8 hours 
 
 SQL Query: 
 
@@ -153,7 +153,7 @@ Result:
 ![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/af84da4c-d6d3-4eb5-b991-b1880777573d)
 
 
-#### 7. Is there a relation between number of steps taken and hours of sleep?
+#### 8. Is there a relation between number of steps taken and hours of sleep?
 
 SQL Query: 
 
@@ -162,7 +162,7 @@ Result:
 ![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/c7868422-d592-42bd-ba7d-126f69f7c165)
 
 
-#### 7. Average hours of sleep by active category 
+#### 9. Average hours of sleep by active category 
 
 SQL Query: 
 
@@ -171,43 +171,53 @@ Result:
 ![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/9f654716-a960-4064-90b8-e957cecee19d)
 
 
-### Analyze Phase: 
+### Share: 
 
 After processing the valuable insights, we will now explore explanatory visualizations that showcase user's healthy daily activities and correlate key parameters using  The appealing visualizations are provided below:
 
-#### 1. Proportion of Calories per Distance by Day:
+#### 1. Categorizing users by activity level
 The analysis of the proportion of calories per distance by day reveals interesting insights into users activity level. Specifically, it is observed that Sundays exhibit a relatively high proportion of calories burned per distance compared to other days of the week. 
 
 
-#### 2. Average Steps per Hour 
+#### 2. Amount of Calories and Distance per day 
 The visualization showcasing the average steps taken per hour reveals interesting patterns in users activity throughout the day. It is evident that the highest average number of steps is recorded during the 6 p.m. hour. This finding suggests that users are more active and tend to engage in higher levels of physical activity during evening time.
 
+![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/2624100b-64b9-4b29-8a39-624adbb9a4bb)
 
 
-#### 3. Total Steps & Total Distance by ID
+#### 3. Average Steps per Hour 
 This key finding highlights the relationship between total steps and total distance covered by individual users. The analysis reveals that user ID '8877689391' recorded the highest number of steps, totaling 497,241, and covered a distance of 409.4 units. This indicates that this particular user has been highly active, taking a significant number of steps and covering a considerable distance.
 
+![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/6963b5d5-4383-44cc-9759-08e63fe9eb3a)
 
 
-#### 4. Maximum Sleep Duration (in hours) by Day
+#### 4. Percent of time spent sleeping vs lying in bed 
+The calculated field for this finding devides the TotalMinutesAsleep column with the TotalTimeinBed column * 100 to receive the percent of time spent sleeping vs lying in bed. 
 
-The sleep duaration was categorized in days, and it is identified that maximum sleep duraton is found to be 13 'hours' on 'Monday'. This finding suggests that users tend to have longer sleep periods on Mondays compared to other days of the week.
+![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/11e9c653-362e-49bd-a5c3-410f9c216c9c)
 
-
-
-
-#### 5. Correlation of Steps with Active Minutes (Very Active and Sendetary Minutes)
-
-The analysis reveals a clear correlation between total steps, very active minutes, and sedentary minutes. As the total steps increase, the very active minutes also tend to increase, while the sedentary minutes decrease. This suggests that individuals who take more steps engage in more intense physical activity and spend less time in a sedentary state. These findings align with the recommendations of the Centers for Disease Control and Prevention (CDC), which suggests engaging in at least 30 minutes of moderate physical activity every day for optimal health. However, the data indicates that the majority of users in the dataset spend a considerable amount of time in a sedentary state, with relatively low levels of very active minutes.
+![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/b03912a7-4ea6-4e5b-99d9-4a84f1bdbab5)
 
 
+#### 5. Average steps per ID and Average Hours of Sleep  
+
+![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/7ef77b92-1199-4727-8a81-e963ec36633a)
 
 
-#### 6. Correlation of Sleep with Each Active Minutes by day
+#### 6. Do the average steps per day meet the 10,000 step reccomendation   
 
-The analysis of sleep and activity minutes over the week reveals that, on average, users spent approximately 6.98 hours sleeping, 13.31 hours in a sedentary state, 3.33 hours in light activity, 0.27 hours in fairly active moments, and 0.40 hours in very active periods.This highlights that users tend to spend a significant amount of time in sedentary behavior during the weekdays. Additionally, the data indicates that users allocates maximum time for sleep and have minimal engagement in activities.
+![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/18b38151-34a5-49b5-a905-5711f245b532)
 
 
+
+#### 7. Does the average sleep per day meet the recommended 8 hours 
+
+![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/66ecfb6d-5acd-4b99-b054-5e2ff8aa47df)
+
+
+#### 8. Is there a relation between number of steps taken and hours of sleep?
+
+#### 9. Average hours of sleep by active category 
 
 
 ### Act Phase 
