@@ -126,13 +126,11 @@ Result:
 ![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/ef944757-2890-4bce-ac8a-32c115d91eab)
 
 
-
 #### 5. Average steps per ID and Average Hours of Sleep 
 SQL Query: 
 Result:
 
 ![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/2be6b562-76e7-4039-809e-48695805ec4d)
-
 
 
 #### 6. Do the average steps per day meet the 10,000 step recomendation   
@@ -177,7 +175,12 @@ After processing the valuable insights, we will now explore explanatory visualiz
 
 #### 1. Categorizing users by activity level
 The analysis of the proportion of calories per distance by day reveals interesting insights into users activity level. Specifically, it is observed that Sundays exhibit a relatively high proportion of calories burned per distance compared to other days of the week. 
+- Sedentary - Less than 5000 steps a day
+- Lightly active - Between 5000 and 7499 steps a day
+- Fairly active - Between 7500 and 9999 steps a day
+- Very active - More than 10000 steps a day
 
+![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/40eb829d-5d58-40de-a87d-539b3719811d)
 
 #### 2. Amount of Calories and Distance per day 
 The visualization showcasing the average steps taken per hour reveals interesting patterns in users activity throughout the day. It is evident that the highest average number of steps is recorded during the 6 p.m. hour. This finding suggests that users are more active and tend to engage in higher levels of physical activity during evening time.
@@ -196,12 +199,13 @@ The calculated field for this finding devides the TotalMinutesAsleep column with
 
 ![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/11e9c653-362e-49bd-a5c3-410f9c216c9c)
 
-![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/b03912a7-4ea6-4e5b-99d9-4a84f1bdbab5)
+![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/a05c9b41-c3b2-44e9-b271-a244d5e02bde)
 
 
 #### 5. Average steps per ID and Average Hours of Sleep  
 
-![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/7ef77b92-1199-4727-8a81-e963ec36633a)
+![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/65bac921-dfe3-4142-848b-01455bc9e045)
+
 
 
 #### 6. Do the average steps per day meet the 10,000 step reccomendation   
@@ -215,9 +219,9 @@ The calculated field for this finding devides the TotalMinutesAsleep column with
 ![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/66ecfb6d-5acd-4b99-b054-5e2ff8aa47df)
 
 
-#### 8. Is there a relation between number of steps taken and hours of sleep?
+#### 8. Average hours of sleep by active category 
 
-#### 9. Average hours of sleep by active category 
+![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/215860a4-8cf3-4335-9806-ec1c87b31073)
 
 
 ### Act Phase 
