@@ -218,7 +218,9 @@ The scatter plot depicts individual users' average total hours of sleep, with th
 
 #### 8. Average hours of sleep by active category 
 The bar chart categorizes users by their level of activity and shows the corresponding average hours of sleep for each group. Notably, 'Lightly Active' users average the most sleep at 7.1 hours, closely followed by 'Fairly Active' users at 6.9 hours. 'Sedentary' users get 6.3 hours of sleep on average, while 'Very Active' users get significantly less sleep, averaging only 4.7 hours. This information further suggests a potential inverse relationship between high activity levels and sleep duration, with the most active users sleeping the least. 
-![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/215860a4-8cf3-4335-9806-ec1c87b31073)
+
+![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/a1d06e35-c5ce-460e-9366-dd856ee2450c)
+
 
 
 ### Act Phase 
