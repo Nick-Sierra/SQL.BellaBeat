@@ -174,32 +174,28 @@ Result:
 After processing the valuable insights, we will now explore explanatory visualizations that showcase user's healthy daily activities and correlate key parameters using  The appealing visualizations are provided below:
 
 #### 1. Categorizing users by activity level
-The analysis of the proportion of calories per distance by day reveals interesting insights into users activity level. Specifically, it is observed that Sundays exhibit a relatively high proportion of calories burned per distance compared to other days of the week. 
-- Sedentary - Less than 5000 steps a day
-- Lightly active - Between 5000 and 7499 steps a day
-- Fairly active - Between 7500 and 9999 steps a day
-- Very active - More than 10000 steps a day
+The pie chart analysis indicates that within our user base, 30.3% are 'Fairly Active', taking 7,500 to 9,999 steps daily. 'Very Active' users, exceeding 10,000 steps, account for 21.2%, while 'Lightly Active' users represent 27.3% with 5,000 to 7,499 steps. A significant portion, 21.2%, are 'Sedentary', with less than 5,000 daily steps. These findings highlight a potential area for encouraging increased physical activity among the less active user segments.
 
 ![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/40eb829d-5d58-40de-a87d-539b3719811d)
 
 #### 2. Amount of Calories and Distance per day 
-The visualization showcasing the average steps taken per hour reveals interesting patterns in users activity throughout the day. It is evident that the highest average number of steps is recorded during the 6 p.m. hour. This finding suggests that users are more active and tend to engage in higher levels of physical activity during evening time.
+The dual-axis chart presents the amount of calories burned and total distance covered by users across different days of the week. The data shows that activity levels, in terms of total distance and calories burned, fluctuate throughout the week. There's a noticeable dip on Sunday and Friday, with a subsequent increase on Monday, peaking on Tuesday, and then a general decline towards the end of the week. This information can be used to understand users' activity patterns, possibly to target communications and challenges to increase activity levels on the lower activity days.
 
 ![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/2624100b-64b9-4b29-8a39-624adbb9a4bb)
 
 
 #### 3. Average Steps per Hour 
-This key finding highlights the relationship between total steps and total distance covered by individual users. The analysis reveals that user ID '8877689391' recorded the highest number of steps, totaling 497,241, and covered a distance of 409.4 units. This indicates that this particular user has been highly active, taking a significant number of steps and covering a considerable distance.
+The data shows the average number of steps taken by users for each hour of the day. The peak activity appears to be in the late afternoon and early evening hours, specifically around 5 PM to 7 PM, with the highest average steps per hour at 599.2 around 7 PM. There's also a significant increase in steps in the early morning, around 6 AM, which may correspond with a common time for morning workouts or commutes.
 
 ![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/6963b5d5-4383-44cc-9759-08e63fe9eb3a)
 
 
 #### 4. Percent of time spent sleeping vs lying in bed 
-The calculated field for this finding devides the TotalMinutesAsleep column with the TotalTimeinBed column * 100 to receive the percent of time spent sleeping vs lying in bed. 
-
-![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/11e9c653-362e-49bd-a5c3-410f9c216c9c)
+The scatter plot illustrates a trend between the average total hours spent asleep and the average time spent in bed not sleeping. Each point represents the aggregated data for an individual user, showing their sleep efficiency. The upward-sloping trend line suggests that as users sleep for more total hours, they also tend to spend more time in bed not sleeping. The bar chart breaks down sleep efficiency ((Total Minutes Asleep / Total Time in Bed)*100) by day of the week. It appears that sleep efficiency does not vary by much across the week, with Sunday and Tuesday having the least efficient sleep habits. 
 
 ![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/a05c9b41-c3b2-44e9-b271-a244d5e02bde)
+
+![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/0d36d864-5154-4fa3-b2f9-f51c4caa4c2b)
 
 
 #### 5. Average steps per ID and Average Hours of Sleep  
