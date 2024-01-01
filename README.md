@@ -199,24 +199,25 @@ The scatter plot illustrates a trend between the average total hours spent aslee
 
 
 #### 5. Average steps per ID and Average Hours of Sleep  
+The scatter plot indicates a negative correlation between users' average daily steps and average hours of sleep. Individuals with higher step counts tend to have fewer hours of sleep. This trend could imply that highly active users may experience shorter sleep durations. This suggests that users who are very active might benefit from features that help to manage or improve sleep quality.
 
 ![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/65bac921-dfe3-4142-848b-01455bc9e045)
 
 
-
-#### 6. Do the average steps per day meet the 10,000 step reccomendation   
+#### 6. Do the average steps per day meet the 10,000 step recommendation   
+The scatter plot illustrates the daily step counts for individual users, with each dot representing a user's average steps. The majority of users fall short of the recommended 10,000 steps per day, as most data points are situated to the left of the recommended 10,000-step mark. This visualization serves as a clear indicator that there is significant room for improvement in physical activity among the user base. 
 
 ![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/18b38151-34a5-49b5-a905-5711f245b532)
 
 
-
 #### 7. Does the average sleep per day meet the recommended 8 hours 
+The scatter plot depicts individual users' average total hours of sleep, with the 8-hour mark highlighted as the recommended sleep duration. 88% of users sleep less than the recommended 8 hours, signaling an area where Bellabeat could focus on promoting better sleep habits and wellness features that encourage sufficient rest.
 
 ![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/66ecfb6d-5acd-4b99-b054-5e2ff8aa47df)
 
 
 #### 8. Average hours of sleep by active category 
-
+The bar chart categorizes users by their level of activity and shows the corresponding average hours of sleep for each group. Notably, 'Lightly Active' users average the most sleep at 7.1 hours, closely followed by 'Fairly Active' users at 6.9 hours. 'Sedentary' users get 6.3 hours of sleep on average, while 'Very Active' users get significantly less sleep, averaging only 4.7 hours. This information further suggests a potential inverse relationship between high activity levels and sleep duration, with the most active users sleeping the least. 
 ![image](https://github.com/Nick-Sierra/SQL.BellaBeat/assets/149681943/215860a4-8cf3-4335-9806-ec1c87b31073)
 
 
@@ -226,25 +227,34 @@ The scatter plot illustrates a trend between the average total hours spent aslee
 
 Based on the findings of this analysis, some key takeaways can be derived:
 
-- Users find Sunday as a day when actively prioritize their health and engage in physical activities. It further suggests that people may intentionally select one day of the weekend to focus on maintaining an active lifestyle, while allocating the other day for more sedentary pursuits.
-- The peak in average steps per hour at 5 to 6 PM, indicating that individuals are most active in evening.
-- Despite the positive correlation between steps and active minutes, the majority of users in the dataset still spend a significant amount of time in a sedentary state, highlighting the need to promote more physical activity and reduce sedentary behavior.
--  The analysis of sleep and activity minutes over the week indicates that users are meeting the minimum sleep standard of 7 hours. However, despite achieving sufficient sleep, their active time remains relatively low, with a significant portion of the day spent in a sedentary state
+- Activity Level Insights: Users fall into distinct categories based on activity, with a notable portion of the user base not meeting the recommended daily steps. Engagement in physical activity varies throughout the week, peaking midweek.
+
+- Sleep Patterns: There's a varied distribution of sleep efficiency, with some days showing higher sleep quality than others. Most users do not meet the recommended 8 hours of sleep, with 'Very Active' users sleeping the least on average.
+
+- Activity vs. Sleep Correlation: A negative correlation is observed between activity levels and sleep duration, indicating that more active users tend to sleep less.
+
+- Steps Recommendation Achievement: The analysis indicates that users rarely meet the 10,000 daily step recommendation, suggesting an opportunity for interventions to increase activity levels.
+
+- Sleep Efficiency: Users show different sleep efficiency rates throughout the week, with midweek days typically showing higher efficiency. This suggests a potential focus for improving sleep-related features in Bellabeat products.
+
+- Opportunities for Bellabeat: The insights from the data analysis present opportunities for Bellabeat to tailor their health-centric products to encourage more consistent activity levels and better sleep habits among their users. This could include developing targeted features or campaigns to motivate users to increase daily activity and improve sleep quality.
  
 #### Recommenations: 
-Based on the key findings of the Bellabeat smart devices usage, here are some recommendations for the business:
 
-- **Personalized Activity Reminders:** Develop a feature within the Bellabeat smart devices that provides personalized activity reminders to users. These reminders can be based on their specific activity patterns and can encourage them to engage in more active behaviors throughout the day.
+Drawing from the insights gained from the Bellabeat study, the following strategic recommendations are proposed for the business:
 
-- **Sleep Optimization Guidance:** Offer sleep optimization guidance through the Bellabeat smart devices. This could include providing recommendations on sleep duration and quality, as well as tips for improving sleep habits. The goal is to help users establish healthy sleep routines and maximize their sleep benefits.
+- Targeted Step Count Increase Programs: Introduce initiatives within the Bellabeat app that specifically aim to help users reach the 10,000 steps daily recommendation. This could be through incremental step goals, virtual group walks, or step-based challenges with milestones.
 
-- **Active Time Tracking:** Enhance the activity tracking capabilities of the Bellabeat smart devices by providing users with detailed insights into their active time distribution throughout the day. This can help users understand their activity patterns and motivate them to increase their active minutes by incorporating not only steps but about cycling, yoga, walking etc. 
+- Data-Driven Sleep Tools: Given the shortfall in sleep hours among users, especially the 'Very Active', develop advanced sleep tracking and analysis tools. These tools could provide feedback on sleep patterns and offer personalized tips to improve sleep duration and quality.
 
-- **Activity Challenges and Rewards:** Implement activity challenges and rewards within the Bellabeat app. This can create a sense of competition and motivation among users to achieve their activity goals. Rewards can include virtual badges, discounts on Bellabeat products, or access to exclusive content.
+- Midweek Activity Engagement: Deploy midweek motivational pushes through the app, as activity levels tend to be higher during this time. This could involve midweek check-ins or encouragement to maintain or increase activity levels to capitalize on the existing user behavior trend.
 
-By implementing these recommendations, Bellabeat can enhance the user experience, increase engagement with the smart devices, and further establish itself as a leading provider of health and wellness solutions.
+- Weekend Activity Incentives: To address the dip in activity over the weekends, design weekend-specific challenges or family-friendly activities that can incentivize users to be more active during these days.
 
+- Negative Correlation Mitigation: For users demonstrating a negative correlation between high activity and sleep duration, provide education and resources on the importance of recovery and rest. This could be through in-app articles, notifications, or integration with relaxation and meditation guidance.
 
-## Visualization 
+- Enhanced Visualization Tools: Improve the app's data visualization capabilities to make users more aware of their activity and sleep trends. Providing users with easy-to-understand graphs and charts could help them make better health decisions.
+
+By focusing on these areas, Bellabeat can not only improve user engagement and satisfaction but also solidify its position as a partner in users' health journeys, ultimately driving brand loyalty and growth.
 
 
