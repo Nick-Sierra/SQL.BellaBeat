@@ -5,8 +5,8 @@ Google Case Study: Bellabeat Smart Device Usage
 ## Quick Links:
 
 ### Data Source: [Bellabeat Kaggle Dataset](https://www.kaggle.com/datasets/arashnic/fitbit/data)
-### SQL Code: 
-### Tableau Public:
+### SQL Code: [Bellabeat SQL Code](https://github.com/Nick-Sierra/SQL.BellaBeat/blob/main/SQL%20Code)
+### Tableau Public:  [Bellabeat Dashboard](https://public.tableau.com/app/profile/nick.sierra/viz/Bellabeat_17039703953650/Dashboard1)
 
 ## Introduction
 
@@ -86,7 +86,7 @@ During the Analyze phase, our objective is to explore the dataset thoroughly, re
 - Fairly active - Between 7500 and 9999 steps a day
 - Very active - More than 10000 steps a day
 
-SQL Query: [Bellabeat Case Study SQL Code](https://github.com/Nick-Sierra/SQL.BellaBeat/blob/main/SQL%20Code)
+SQL Query: [Bellabeat SQL Code](https://github.com/Nick-Sierra/SQL.BellaBeat/blob/main/SQL%20Code)
 
 Result:
 
@@ -99,7 +99,7 @@ Result:
 
 #### 2. Amount of Calories and Distance per day 
 
-SQL Query: [Bellabeat Case Study SQL Code](https://github.com/Nick-Sierra/SQL.BellaBeat/blob/main/SQL%20Code)
+SQL Query: [Bellabeat SQL Code](https://github.com/Nick-Sierra/SQL.BellaBeat/blob/main/SQL%20Code)
 
 Result:
 
@@ -108,7 +108,7 @@ Result:
 
 #### 3. Average Steps per Hour 
 
-SQL Query: [Bellabeat Case Study SQL Code](https://github.com/Nick-Sierra/SQL.BellaBeat/blob/main/SQL%20Code)
+SQL Query: [Bellabeat SQL Code](https://github.com/Nick-Sierra/SQL.BellaBeat/blob/main/SQL%20Code)
 
 Result: 0 for the hour of the day represents 12:00 AM
 
@@ -117,7 +117,7 @@ Result: 0 for the hour of the day represents 12:00 AM
 
 #### 4. Percent of time spent sleeping vs lying in bed 
 
-SQL Query: [Bellabeat Case Study SQL Code](https://github.com/Nick-Sierra/SQL.BellaBeat/blob/main/SQL%20Code)
+SQL Query: [Bellabeat SQL Code](https://github.com/Nick-Sierra/SQL.BellaBeat/blob/main/SQL%20Code)
 
 Result:
 
@@ -126,7 +126,7 @@ Result:
 
 #### 5. Average steps per ID and Average Hours of Sleep 
 
-SQL Query: [Bellabeat Case Study SQL Code](https://github.com/Nick-Sierra/SQL.BellaBeat/blob/main/SQL%20Code)
+SQL Query: [Bellabeat SQL Code](https://github.com/Nick-Sierra/SQL.BellaBeat/blob/main/SQL%20Code)
 
 Result:
 
@@ -135,7 +135,7 @@ Result:
 
 #### 6. Do the average steps per day meet the 10,000 step recomendation   
 
-SQL Query: [Bellabeat Case Study SQL Code](https://github.com/Nick-Sierra/SQL.BellaBeat/blob/main/SQL%20Code)
+SQL Query: [Bellabeat SQL Code](https://github.com/Nick-Sierra/SQL.BellaBeat/blob/main/SQL%20Code)
 
 Result: Total steps > 0 was added to exclude entries with 0 steps per day 
 
@@ -144,7 +144,7 @@ Result: Total steps > 0 was added to exclude entries with 0 steps per day
 
 #### 7. Does the average sleep per day meet the recommended 8 hours 
 
-SQL Query: [Bellabeat Case Study SQL Code](https://github.com/Nick-Sierra/SQL.BellaBeat/blob/main/SQL%20Code)
+SQL Query: [Bellabeat SQL Code](https://github.com/Nick-Sierra/SQL.BellaBeat/blob/main/SQL%20Code)
 
 Result:
 
@@ -153,7 +153,7 @@ Result:
 
 #### 8. Is there a relation between number of steps taken and hours of sleep?
 
-SQL Query: [Bellabeat Case Study SQL Code](https://github.com/Nick-Sierra/SQL.BellaBeat/blob/main/SQL%20Code)
+SQL Query: [Bellabeat SQL Code](https://github.com/Nick-Sierra/SQL.BellaBeat/blob/main/SQL%20Code)
 
 Result: 
 
@@ -162,7 +162,7 @@ Result:
 
 #### 9. Average hours of sleep by active category 
 
-SQL Query: [Bellabeat Case Study SQL Code](https://github.com/Nick-Sierra/SQL.BellaBeat/blob/main/SQL%20Code)
+SQL Query: [Bellabeat SQL Code](https://github.com/Nick-Sierra/SQL.BellaBeat/blob/main/SQL%20Code)
 
 Result:
 
